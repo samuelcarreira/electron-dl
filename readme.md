@@ -11,7 +11,6 @@
 - Handles multiple downloads.
 - Shows badge count *(macOS & Linux only)* and download progress. Example on macOS:
 
-<img src="screenshot.png" width="82">
 
 
 ## Install
@@ -100,6 +99,31 @@ Default: [`downloadItem.getFilename()`](https://electronjs.org/docs/api/download
 Name of the saved file.
 
 This option only makes sense for `electronDl.download()`.
+
+#### showProgressBar
+
+Type: `boolean`<br>
+Default: `false`
+
+Show window progress bar *(new)*
+
+#### detailedProgress
+
+Type: `boolean`<br>
+Default: `true`
+
+*(new)*
+If `true` outputs a detailed progress stats object
+
+`s: download speed (in bps)`
+`p: percentage (0 - 1 value)`
+`t: total download size (in bytes)`
+`r: total received (in bytes)`
+
+If `false` outputs the default float value (percentage between 0 and 1)
+
+TIP: to convert download speed from bps to Mbps, you can use
+```mbps = ((speed / 1024) / 1024).toFixed(2); // outputs with two decimal places```
 
 #### showErrorDialog
 
