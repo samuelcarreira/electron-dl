@@ -110,14 +110,14 @@ Show window progress bar *(new)*
 #### detailedProgress
 
 Type: `boolean`<br>
-Default: `true`
+Default: `false`
 
 *(new)*
 If `true` outputs a detailed progress stats object
 
-`s: download speed (in bps)`
-`p: percentage (0 - 1 value)`
-`t: total download size (in bytes)`
+`s: download speed (in bps)`<br>
+`p: percentage (0 - 1 value)`<br>
+`t: total download size (in bytes)`<br>
 `r: total received (in bytes)`
 
 If `false` outputs the default float value (percentage between 0 and 1)
