@@ -22,25 +22,25 @@ function registerListener(session, options, cb = () => {}) {
   let receivedBytes = 0;
   let completedBytes = 0;
   let totalBytes = 0;
-  let startTime = (new Date()).getTime();
+  let startTime = new Date().getTime();
 
   const activeDownloadItems = () => downloadItems.size;
-  const progressDownloadItems = (detailedProgress) => {
-	  if (detailedProgress) {
-		const nowTime = (new Date()).getTime()
-		const duration = (nowTime - startTime) / 1000;
-		const speed = Math.floor((receivedBytes * 8) / duration); // in bps
-		// convert speed to kbps (speed / 1024).toFixed(2)
-		
-		return {
-			s: speed,
-			p: receivedBytes / totalBytes,
-			t: totalBytes,
-			r: receivedBytes
-		  };
-	  } else {
-		  return receivedBytes / totalBytes;
-	  }
+  const progressDownloadItems = detailedProgress => {
+    if (detailedProgress) {
+      const nowTime = new Date().getTime();
+      const duration = (nowTime - startTime) / 1000;
+      const speed = Math.floor((receivedBytes * 8) / duration); // in bps
+      // convert speed to kbps (speed / 1024).toFixed(2)
+
+      return {
+        s: speed,
+        p: receivedBytes / totalBytes,
+        t: totalBytes,
+        r: receivedBytes
+      };
+    } else {
+      return receivedBytes / totalBytes;
+    }
   };
 
   options = Object.assign(
@@ -78,8 +78,10 @@ function registerListener(session, options, cb = () => {}) {
     const errorTitle = options.errorTitle || "Download Error";
     const showErrorDialog =
       options.showErrorDialog != null ? options.showErrorDialog : true; // default is true
-    const showProgressBar = options.showProgressBar != null ? options.showProgressBar : false; // default is false
-	const detailedProgress = options.detailedProgress != null ? options.detailedProgress : true; // default is true
+    const showProgressBar =
+      options.showProgressBar != null ? options.showProgressBar : false; // default is false
+    const detailedProgress =
+      options.detailedProgress != null ? options.detailedProgress : false; // default is false
 
     if (!options.saveAs) {
       item.setSavePath(filePath);
